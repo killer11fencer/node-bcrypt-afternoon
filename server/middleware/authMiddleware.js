@@ -5,4 +5,11 @@ module.exports = {
         }
         next();
     },
+    adminsOnly: (req,res,next) => {
+        let {isAdmin} = req.session.user
+        if(!isAdmin) {
+            res.status(403).send('GO HOME YOU NO ADMIN')
+        }
+        next();
+    },
 };
